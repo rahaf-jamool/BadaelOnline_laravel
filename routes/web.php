@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes([
     'register' => false
 ]);
-// / Route::get('/', function () {
-// //     return view('welcome');
-// // });
+ Route::get('/', function () {
+    return view('welcome');
+});
 // Route::get('/', [FrontController::class, 'home'])->name('homepage');
 // Route::post('/', [FrontController::class, 'subscribe'])->name('subscribe');
 // Route::get('about-us', [FrontController::class, 'about'])->name('about');

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{About, Banner, Category, Faq, General, Link, Page, Partner, Pcategory, Portfolio, Post, Tag, Team, Testimonial, Service, Subscriber};
+use Illuminate\Support\Facades\Validator;
+
 class FrontController extends Controller
 {
     public function home()
@@ -251,7 +253,7 @@ class FrontController extends Controller
 
     public function subscribe(Request $request)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "email" => "required|unique:subscribers,email",        
         ])->validate();
 

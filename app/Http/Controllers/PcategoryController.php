@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pcategory;
+use Illuminate\Support\Facades\Validator;
 
 class PCategoryController extends Controller
 {
@@ -27,7 +28,7 @@ class PCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "name" => "required|unique:pcategories"     
         ])->validate();
         
@@ -78,7 +79,7 @@ class PCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "name" => "required"     
         ])->validate();
         

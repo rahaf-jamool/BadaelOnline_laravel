@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Team;
-
+use Illuminate\Support\Facades\Storage;
 class TeamController extends Controller
 {
     /**
@@ -44,6 +44,7 @@ class TeamController extends Controller
         $team->facebook = $request->facebook;
         $team->instagram = $request->instagram;
         $team->linkedin = $request->linkedin;
+        $team->emp_saying = $request->emp_saying;
 
         $photo = $request->file('photo');
 
@@ -104,12 +105,13 @@ class TeamController extends Controller
         $team->facebook = $request->facebook;
         $team->instagram = $request->instagram;
         $team->linkedin = $request->linkedin;
-
+        $team->emp_saying = $request->emp_saying;
+        
         $new_photo = $request->file('photo');
 
         if($new_photo){
         if($team->photo && file_exists(storage_path('app/public/' . $team->photo))){
-            \Storage::delete('public/'. $team->photo);
+            Storage::delete('public/'. $team->photo);
         }
 
         $new_cover_path = $new_photo->store('images/team', 'public');

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Models\{Category, Post, Tag};
 
-use Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -42,7 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "title" => "required",
             "cover" => "required",
             "body" => "required",
@@ -54,7 +57,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $data['slug'] = \Str::slug(request('title'));
+        $data['slug'] = Str::slug(request('title'));
 
         $data['category_id'] = request('category');
 
@@ -119,7 +122,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "title" => "required",
             "body" => "required",
             "category" => "required",
@@ -132,7 +135,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $data['slug'] = \Str::slug(request('title'));
+        $data['slug'] = Str::slug(request('title'));
 
         $data['category_id'] = request('category');
 
@@ -141,7 +144,7 @@ class PostController extends Controller
         if($cover){
 
             if($post->cover && file_exists(storage_path('app/public/' . $post->cover))){
-                \Storage::delete('public/'. $post->cover);
+                Storage::delete('public/'. $post->cover);
             }
 
         $cover_path = $cover->store('images/blog', 'public');
@@ -211,7 +214,7 @@ class PostController extends Controller
             
 
             if($post->cover && file_exists(storage_path('app/public/' . $post->cover))){
-                \Storage::delete('public/'. $post->cover);
+                Storage::delete('public/'. $post->cover);
             }
 
         $post->forceDelete();

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\{Portfolio, Pcategory};
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class PortfolioController extends Controller
 {
@@ -40,7 +43,7 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "cover" => "required",
             "category" => "required",
             "desc" => "required"
@@ -49,7 +52,7 @@ class PortfolioController extends Controller
         $portfolio = new Portfolio();
         $portfolio->pcategory_id = $request->category;
         $portfolio->name = $request->name;
-        $portfolio->slug = \Str::slug($request->name);
+        $portfolio->slug = Str::slug($request->name);
         $portfolio->client = $request->client;
         $portfolio->desc = $request->desc;
         $portfolio->date = $request->date;
@@ -107,7 +110,7 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "category" => "required",
             "desc" => "required"
         ])->validate();
@@ -124,7 +127,7 @@ class PortfolioController extends Controller
 
         if($new_cover){
         if($portfolio->cover && file_exists(storage_path('app/public/' . $portfolio->cover))){
-            \Storage::delete('public/'. $portfolio->cover);
+            Storage::delete('public/'. $portfolio->cover);
         }
 
         $new_cover_path = $new_cover->store('images/portfolio', 'public');

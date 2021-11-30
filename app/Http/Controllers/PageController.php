@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -38,7 +39,7 @@ class PageController extends Controller
     {
         $data = $request->all();
 
-        $data['slug'] = \Str::slug(request('title'));
+        $data['slug'] = Str::slug(request('title'));
 
         $page = Page::create($data);
 
@@ -89,7 +90,7 @@ class PageController extends Controller
 
         $data = $request->all();
 
-        $data['slug'] = \Str::slug(request('title'));
+        $data['slug'] = Str::slug(request('title'));
 
         $update = $page->update($data);
 

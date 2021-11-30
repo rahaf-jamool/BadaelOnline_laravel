@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BannerController, CategoryController, FaqController, FrontController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, TeamController, UserController};
+use App\Http\Controllers\{BannerController, CategoryController, FaqController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, TeamController, UserController};
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,20 +24,20 @@ Auth::routes([
 // / Route::get('/', function () {
 // //     return view('welcome');
 // // });
-Route::get('/', [FrontController::class, 'home'])->name('homepage');
-Route::post('/', [FrontController::class, 'subscribe'])->name('subscribe');
-Route::get('about-us', [FrontController::class, 'about'])->name('about');
-Route::get('testimonials', [FrontController::class, 'testi'])->name('testi');
-Route::get('services', [FrontController::class, 'service'])->name('service');
-Route::get('services/{slug}', [FrontController::class, 'serviceshow'])->name('serviceshow');
-Route::get('portfolio', [FrontController::class, 'portfolio'])->name('portfolio');
-Route::get('portfolio/{slug}', [FrontController::class, 'portfolioshow'])->name('portfolioshow');
-Route::get('blog', [FrontController::class, 'blog'])->name('blog');
-Route::get('blog/search',[FrontController::class, 'search'])->name('search');
-Route::get('blog/{slug}', [FrontController::class, 'blogshow'])->name('blogshow');
-Route::get('categories/{category:slug}',[FrontController::class, 'category'])->name('category');
-Route::get('tags/{tag:slug}',[FrontController::class, 'tag'])->name('tag');
-Route::get('pages/{slug}', [FrontController::class, 'page'])->name('page');
+// Route::get('/', [FrontController::class, 'home'])->name('homepage');
+// Route::post('/', [FrontController::class, 'subscribe'])->name('subscribe');
+// Route::get('about-us', [FrontController::class, 'about'])->name('about');
+// Route::get('testimonials', [FrontController::class, 'testi'])->name('testi');
+// Route::get('services', [FrontController::class, 'service'])->name('service');
+// Route::get('services/{slug}', [FrontController::class, 'serviceshow'])->name('serviceshow');
+// Route::get('portfolio', [FrontController::class, 'portfolio'])->name('portfolio');
+// Route::get('portfolio/{slug}', [FrontController::class, 'portfolioshow'])->name('portfolioshow');
+// Route::get('blog', [FrontController::class, 'blog'])->name('blog');
+// Route::get('blog/search',[FrontController::class, 'search'])->name('search');
+// Route::get('blog/{slug}', [FrontController::class, 'blogshow'])->name('blogshow');
+// Route::get('categories/{category:slug}',[FrontController::class, 'category'])->name('category');
+// Route::get('tags/{tag:slug}',[FrontController::class, 'tag'])->name('tag');
+// Route::get('pages/{slug}', [FrontController::class, 'page'])->name('page');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

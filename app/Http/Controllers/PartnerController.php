@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Partner;
+use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
@@ -100,7 +101,7 @@ class PartnerController extends Controller
 
        if($new_cover){
        if($partner->cover && file_exists(storage_path('app/public/' . $partner->cover))){
-           \Storage::delete('public/'. $partner->cover);
+           Storage::delete('public/'. $partner->cover);
        }
 
        $new_cover_path = $new_cover->store('images/partner', 'public');
@@ -131,7 +132,7 @@ class PartnerController extends Controller
        $partner = Partner::findOrFail($id);
 
        if($partner->cover && file_exists(storage_path('app/public/' . $partner->cover))){
-        \Storage::delete('public/'. $partner->cover);
+        Storage::delete('public/'. $partner->cover);
     }
     
        $partner->delete();

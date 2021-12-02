@@ -20,7 +20,7 @@ class CreateLanguagesTable extends Migration
             $table->string('name');
             $table->enum('direction',['rtl','ltr'])->default('rtl');
             $table->boolean('active')->default('1');
-            $table->timestamps();
+            $table->active();
         });
     }
 

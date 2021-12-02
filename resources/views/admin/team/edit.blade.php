@@ -171,14 +171,14 @@
 
     <div class="form-group ml-5">
 
-        <label for="emp_saying" class="col-sm-2 col-form-label">Emp Saying</label>
+        <label for="saying" class="col-sm-2 col-form-label">Saying</label>
 
         <div class="col-sm-7">
 
-            <input type="text" name='emp_saying' class="form-control {{$errors->first('emp_saying') ? "is-invalid" : "" }} " value="{{old('emp_saying') ? old('linkedin') : $team->emp_saying}}" id="emp_saying" placeholder="Emp saying">
+            <input type="text" name='saying' class="form-control {{$errors->first('saying') ? "is-invalid" : "" }} " value="{{old('saying') ? old('linkedin') : $team->saying}}" id="saying" placeholder="Saying">
 
             <div class="invalid-feedback">
-                {{ $errors->first('emp_saying') }}    
+                {{ $errors->first('saying') }}    
             </div>   
 
         </div>

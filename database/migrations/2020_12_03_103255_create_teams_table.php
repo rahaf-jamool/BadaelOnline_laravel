@@ -22,7 +22,7 @@ class CreateTeamsTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('linkedin')->nullable();
-            $table->text('emp_saying')->nullable();
+            $table->text('saying')->nullable();
             $table->timestamps();
         });
     }

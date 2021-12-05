@@ -19,11 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 // change language
-Route::get('locale/{locale?}', array('en'=>'set-locale', 'uses'=>'App\Http\Controllers\Languages\LanguageController@switch'));
+// Route::get('locale/{locale?}', array('en'=>'set-locale', 'uses'=>'App\Http\Controllers\Languages\LanguageController@switch'));
 
-Route::group([
-    'middleware' => ['Localization']
-],function(){
+// Route::group([
+//     'middleware' => ['Localization']
+// ],function(){
     // api layout side front 
     Route::get('/home', [FrontController::class, 'home'])->name('homepage');
     Route::post('/home/subscribe', [FrontController::class, 'subscribe'])->name('subscribe');
@@ -39,4 +39,4 @@ Route::group([
     Route::get('/categories/{category:slug}',[FrontController::class, 'category'])->name('category');
     Route::get('/tags/{tag:slug}',[FrontController::class, 'tag'])->name('tag');
     Route::get('/pages/{slug}', [FrontController::class, 'page'])->name('page');
-});
+// });

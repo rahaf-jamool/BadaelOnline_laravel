@@ -18,7 +18,8 @@ class CreatePortfoliosTable extends Migration
             $table->foreignId('pcategory_id');
             $table->string('name');
             $table->string('slug');
-            $table->string('cover');
+            $table->string('cover')->nullable();
+            $table->string('image')->nullable();
             $table->string('client');
 			 $table->string('link');
             $table->date('date')->nullable();

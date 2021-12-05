@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{About, General, Page, Post, Team, User};
-
+use App\Models\{About, General, Page, Post, User};
+use App\Models\Team\Team;
 class GeneralController extends Controller
 {
     public function dashboard(){

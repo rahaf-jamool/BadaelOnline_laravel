@@ -9,7 +9,7 @@
   text-align: center;
 }
  .picture {
-  width: 800px;
+  /* width: 800px; */
   height: 400px;
   background-color: #999999;
   border: 4px solid #CCCCCC;
@@ -37,6 +37,12 @@
   width: 100%;
   height: 100%;
 }
+.image {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
 </style>
 @endsection
 @section('content')
@@ -52,28 +58,55 @@
 
     <div class="container">
 
-        <div class="form-group">
+        {{-- image --}}
+        <div class="image">
+                {{-- image desktop --}}
+        <div class="form-group col-md-6">
 
             <div class="picture-container">
-    
+
                 <div class="picture">
-    
+
                     <img src="" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
-    
+
                     <input type="file" id="wizard-picture" name="cover" class="form-control {{$errors->first('cover') ? "is-invalid" : "" }} ">
-    
+
                     <div class="invalid-feedback">
-                        {{ $errors->first('cover') }}    
-                    </div>  
-    
+                        {{ $errors->first('cover') }}
+                    </div>
+
                 </div>
-    
+
                 <h6>Pilih Cover</h6>
-    
+
             </div>
-    
+
         </div>
 
+        {{-- image mobile --}}
+        <div class="form-group col-md-6">
+
+            <div class="picture-container">
+
+                <div class="picture">
+
+                    <img src="" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
+
+                    <input type="file" id="wizard-picture" name="image" class="form-control {{$errors->first('image') ? "is-invalid" : "" }} ">
+
+                    <div class="invalid-feedback">
+                        {{ $errors->first('image') }}
+                    </div>
+
+                </div>
+
+                <h6>Mobile Image</h6>
+
+            </div>
+
+        </div>
+        </div>
+        {{--  --}}
         <div class="form-group ml-5">
 
             <label for="category" class="col-sm-2 col-form-label">Category</label>
@@ -87,8 +120,8 @@
                     @endforeach
                 </select>
                 <div class="invalid-feedback">
-                    {{ $errors->first('category') }}    
-                </div>   
+                    {{ $errors->first('category') }}
+                </div>
 
             </div>
 
@@ -103,8 +136,8 @@
                 <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name')}}" id="name" placeholder="Project Name">
 
                 <div class="invalid-feedback">
-                    {{ $errors->first('name') }}    
-                </div>   
+                    {{ $errors->first('name') }}
+                </div>
 
             </div>
 
@@ -119,8 +152,8 @@
                 <input type="text" name='client' class="form-control {{$errors->first('client') ? "is-invalid" : "" }} " value="{{old('client')}}" id="client" placeholder="client">
 
                 <div class="invalid-feedback">
-                    {{ $errors->first('client') }}    
-                </div>   
+                    {{ $errors->first('client') }}
+                </div>
 
             </div>
 
@@ -135,8 +168,8 @@
                 <input type="date" name='date' class="form-control {{$errors->first('date') ? "is-invalid" : "" }} " value="{{old('date')}}" id="date" >
 
                 <div class="invalid-feedback">
-                    {{ $errors->first('date') }}    
-                </div>   
+                    {{ $errors->first('date') }}
+                </div>
 
             </div>
 
@@ -150,26 +183,26 @@
 
                 <textarea name="desc" class="form-control {{$errors->first('desc') ? "is-invalid" : "" }} "  id="summernote" cols="30" rows="10">{{old('desc')}}</textarea>
                 <div class="invalid-feedback">
-                    {{ $errors->first('desc') }}    
-                </div>   
+                    {{ $errors->first('desc') }}
+                </div>
 
             </div>
 
         </div>
 
-        
-   
+
+
         <div class="form-group ml-5">
-   
+
             <div class="col-sm-3">
-   
+
                 <button type="submit" class="btn btn-primary">Create</button>
-   
+
             </div>
-   
+
         </div>
 
-    </div>      
+    </div>
 
   </form>
 @endsection

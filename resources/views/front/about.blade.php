@@ -46,7 +46,6 @@
           </div>
   
           <div class="row">
-  
            @foreach ($team as $team)
            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up">

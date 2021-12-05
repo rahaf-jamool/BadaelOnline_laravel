@@ -73,7 +73,7 @@ class FrontController extends Controller
 
     public function page($slug)
     {
-        return $this->frontService->page($slug);        
+        return $this->frontService->page($slug);
     }
 
     public function subscribe($request)

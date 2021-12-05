@@ -31,7 +31,7 @@ class PortfolioController extends Controller
     public function create()
     {
         $categories = Pcategory::get();
-        
+
         return view('admin.portfolio.create',compact('categories'));
     }
 
@@ -57,6 +57,7 @@ class PortfolioController extends Controller
         $portfolio->desc = $request->desc;
         $portfolio->date = $request->date;
 
+        //image desktop
         $cover = $request->file('cover');
 
         if($cover){
@@ -65,14 +66,22 @@ class PortfolioController extends Controller
         $portfolio->cover = $cover_path;
         }
 
+        //image mobile
+        $image = $request->file('image');
+
+        if($image){
+        $image_path = $image->store('images/portfolio', 'public');
+
+        $portfolio->image = $image_path;
+        }
         if ($portfolio->save()) {
 
                 return redirect()->route('admin.portfolio')->with('success', 'Data added successfully');
-        
+
                } else {
-                   
+
                 return redirect()->route('admin.portfolio.create')->with('error', 'Data failed to add');
-        
+
                }
     }
 
@@ -122,7 +131,7 @@ class PortfolioController extends Controller
         $portfolio->desc = $request->desc;
         $portfolio->date = $request->date;
 
-
+        // image desktop
         $new_cover = $request->file('cover');
 
         if($new_cover){
@@ -133,17 +142,31 @@ class PortfolioController extends Controller
         $new_cover_path = $new_cover->store('images/portfolio', 'public');
 
         $portfolio->cover = $new_cover_path;
-    
+
+        }
+
+        // image mobile
+        $new_image = $request->file('image');
+
+        if($new_image){
+        if($portfolio->image && file_exists(storage_path('app/public/' . $portfolio->image))){
+            Storage::delete('public/'. $portfolio->image);
+        }
+
+        $new_image_path = $new_image->store('images/portfolio', 'public');
+
+        $portfolio->image = $new_image_path;
+
         }
 
         if ($portfolio->save()) {
 
                 return redirect()->route('admin.portfolio')->with('success', 'Data updated successfully');
-        
+
                } else {
-                   
+
                 return redirect()->route('admin.portfolio.edit')->with('error', 'Data failed to update');
-        
+
                }
     }
 

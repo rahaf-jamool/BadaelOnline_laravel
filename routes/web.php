@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{BannerController, CategoryController, FaqController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, TeamController, UserController};
 use Illuminate\Support\Facades\Auth;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,20 +23,8 @@ Auth::routes([
  Route::get('/', function () {
     return view('welcome');
 });
-// Route::get('/', [FrontController::class, 'home'])->name('homepage');
-// Route::post('/', [FrontController::class, 'subscribe'])->name('subscribe');
-// Route::get('about-us', [FrontController::class, 'about'])->name('about');
-// Route::get('testimonials', [FrontController::class, 'testi'])->name('testi');
-// Route::get('services', [FrontController::class, 'service'])->name('service');
-// Route::get('services/{slug}', [FrontController::class, 'serviceshow'])->name('serviceshow');
-// Route::get('portfolio', [FrontController::class, 'portfolio'])->name('portfolio');
-// Route::get('portfolio/{slug}', [FrontController::class, 'portfolioshow'])->name('portfolioshow');
-// Route::get('blog', [FrontController::class, 'blog'])->name('blog');
-// Route::get('blog/search',[FrontController::class, 'search'])->name('search');
-// Route::get('blog/{slug}', [FrontController::class, 'blogshow'])->name('blogshow');
-// Route::get('categories/{category:slug}',[FrontController::class, 'category'])->name('category');
-// Route::get('tags/{tag:slug}',[FrontController::class, 'tag'])->name('tag');
-// Route::get('pages/{slug}', [FrontController::class, 'page'])->name('page');
+// change language
+Route::get('locale/{locale?}', array('en'=>'set-locale', 'uses'=>'App\Http\Controllers\Languages\LanguageController@switch'));
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -48,7 +35,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // General settings
     Route::get('general-settings', [GeneralController::class, 'general'])->name('admin.general');
     Route::post('general-settings', [GeneralController::class, 'generalUpdate'])->name('admin.general.update');
-
     // About
     Route::get('about', [GeneralController::class, 'about'])->name('admin.about');
     Route::post('about', [GeneralController::class, 'aboutUpdate'])->name('about.update');
@@ -159,6 +145,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('services/edit/{id}', [ServiceController::class, 'update'])->name('admin.service.update');
     Route::delete('services/destroy/{id}',[ServiceController::class, 'destroy'])->name('admin.service.destroy');
 
+    Route::group([
+        'middleware' => ['Localization']
+    ],function(){
     // Manage Team
     Route::get('teams', [TeamController::class, 'index'])->name('admin.team');
     Route::get('teams/create', [TeamController::class, 'create'])->name('admin.team.create');
@@ -166,6 +155,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('teams/edit/{id}', [TeamController::class, 'edit'])->name('admin.team.edit');
     Route::post('teams/edit/{id}', [TeamController::class, 'update'])->name('admin.team.update');
     Route::delete('teams/destroy/{id}',[TeamController::class, 'destroy'])->name('admin.team.destroy');
+    });
 
      // Manage Admin
      Route::get('users', [UserController::class, 'index'])->name('admin.user');

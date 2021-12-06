@@ -17,6 +17,6 @@ class TeamScope implements Scope
             ->where('team_translation.local', '=', Config::get('app.locale'))
             ->select([
                 'teams.id','teams.is_active','teams.photo','teams.facebook','teams.twitter','teams.instagram','teams.linkedin',
-                'team_translation.name','team_translation.position','team_translation.saying','team_translation.local']);
+                'team_translation.name','team_translation.position','team_translation.qoute','team_translation.local']);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Service\Front;
 
 use App\Manager\Front\FrontManager;
+use Illuminate\Http\Request;
 
 class FrontService
 {
@@ -75,7 +76,7 @@ class FrontService
         return $this->frontManager->page($slug);        
     }
 
-    public function subscribe($request)
+    public function subscribe(Request $request)
     {
         return $this->frontManager->subscribe($request);
     }

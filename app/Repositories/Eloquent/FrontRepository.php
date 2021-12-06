@@ -31,12 +31,12 @@ class FrontRepository implements FrontRepositoryInterface{
     private $testimonial;
     private $service;
     private $subscriber;
-    private $request;
+    // private $request;
     use GeneralTrait;
 
-    public function __construct(Request $request, Tag $tag,Category $category ,Team $team,TeamTranslation $teamTranslation,About $about, Banner $banner, Faq $faq, General $general, Link $link, Page $page, Partner $partner, Pcategory $pcategories, Portfolio $portfolio, Post $post, Testimonial $testimonial, Service $service, Subscriber $subscriber)
+    public function __construct(Tag $tag,Category $category ,Team $team,TeamTranslation $teamTranslation,About $about, Banner $banner, Faq $faq, General $general, Link $link, Page $page, Partner $partner, Pcategory $pcategories, Portfolio $portfolio, Post $post, Testimonial $testimonial, Service $service, Subscriber $subscriber)
     {
-        $this->request = $request;
+        // $this->request = $request;
         $this->team = $team;
         $this->teamTranslation = $teamTranslation;
         $this->tag = $tag;
@@ -204,14 +204,14 @@ class FrontRepository implements FrontRepositoryInterface{
         return $response = $this->returnData(compact('general','link','lpost','page'));
     }
 
-    public function subscribe()
+    public function subscribe(Request $request)
     {
-        Validator::make($this->request->all(), [
+        Validator::make($request->all(), [
             "email" => "required|unique:subscribers,email",
         ])->validate();
 
         $subs = new Subscriber();
-        $subs->email = $this->request->email;
+        $subs->email = $request->email;
         if ( $subs->save()) {
 
             return redirect()->route('homepage')->with('success', 'You have successfully subscribed');

@@ -3,6 +3,8 @@
 namespace App\Manager\Front;
 
 use App\Repositories\Interfaces\FrontRepositoryInterface;
+use Illuminate\Http\Request;
+
 class FrontManager
 {
     private $frontRepository;
@@ -54,14 +56,14 @@ class FrontManager
         return $this->frontRepository->blogshow($slug); 
     }
 
-    public function category($category)
+    public function category()
     {
-        return $this->frontRepository->category($category); 
+        return $this->frontRepository->category(); 
     }
 
-    public function tag($tag)
+    public function tag()
     {
-        return $this->frontRepository->tag($tag); 
+        return $this->frontRepository->tag(); 
     }
 
     public function search()
@@ -74,7 +76,7 @@ class FrontManager
         return $this->frontRepository->page($slug); 
     }
 
-    public function subscribe($request)
+    public function subscribe(Request $request)
     {
         return $this->frontRepository->subscribe($request); 
     }

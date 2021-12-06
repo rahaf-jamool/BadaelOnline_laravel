@@ -92,10 +92,10 @@
 
                     <img src="" class="picture-src" id="wizardPicturePreview" height="200px" width="400px" title=""/>
 
-                    <input type="file" id="wizard-picture" name="image" class="form-control {{$errors->first('image') ? "is-invalid" : "" }} ">
+                    <input type="file" id="wizard-picture" name="mobileImage" class="form-control {{$errors->first('mobileImage') ? "is-invalid" : "" }} ">
 
                     <div class="invalid-feedback">
-                        {{ $errors->first('image') }}
+                        {{ $errors->first('mobileImage') }}
                     </div>
 
                 </div>

@@ -24,7 +24,7 @@ Auth::routes([
     return view('welcome');
 });
 // change language
-Route::get('locale/{locale?}', array('en'=>'set-locale', 'uses'=>'App\Http\Controllers\Languages\LanguageController@switch'));
+Route::get('locale/{locale?}', array('en'=>'set-locale', 'uses'=>'App\Http\Controllers\Languages\LanguageController@changeLang'));
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

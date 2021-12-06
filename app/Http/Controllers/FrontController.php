@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service\Front\FrontService;
-
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -76,7 +76,7 @@ class FrontController extends Controller
         return $this->frontService->page($slug);
     }
 
-    public function subscribe($request)
+    public function subscribe(Request $request)
     {
         return $this->frontService->subscribe($request);
     }

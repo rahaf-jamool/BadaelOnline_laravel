@@ -19,7 +19,7 @@ class CreatePortfoliosTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('cover')->nullable();
-            $table->string('image')->nullable();
+            $table->string('mobileImage')->nullable();
             $table->string('client');
 			 $table->string('link');
             $table->date('date')->nullable();

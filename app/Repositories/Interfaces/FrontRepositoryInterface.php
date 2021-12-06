@@ -2,6 +2,8 @@
  
 namespace App\Repositories\Interfaces;
 
+use Illuminate\Http\Request;
+
 interface FrontRepositoryInterface{
 
     public function home();
@@ -30,6 +32,6 @@ interface FrontRepositoryInterface{
 
     public function page($slug);
 
-    public function subscribe();
+    public function subscribe(Request $request);
 
 }

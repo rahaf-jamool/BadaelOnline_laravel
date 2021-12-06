@@ -67,12 +67,12 @@ class PortfolioController extends Controller
         }
 
         //image mobile
-        $image = $request->file('image');
+        $mobileImage = $request->file('mobileImage');
 
-        if($image){
-        $image_path = $image->store('images/portfolio', 'public');
+        if($mobileImage){
+        $mobileImage_path = $mobileImage->store('images/portfolio', 'public');
 
-        $portfolio->image = $image_path;
+        $portfolio->mobileImage = $mobileImage_path;
         }
         if ($portfolio->save()) {
 
@@ -146,16 +146,16 @@ class PortfolioController extends Controller
         }
 
         // image mobile
-        $new_image = $request->file('image');
+        $new_mobileImage = $request->file('mobileImage');
 
-        if($new_image){
-        if($portfolio->image && file_exists(storage_path('app/public/' . $portfolio->image))){
-            Storage::delete('public/'. $portfolio->image);
+        if($new_mobileImage){
+        if($portfolio->mobileImage && file_exists(storage_path('app/public/' . $portfolio->mobileImage))){
+            Storage::delete('public/'. $portfolio->mobileImage);
         }
 
-        $new_image_path = $new_image->store('images/portfolio', 'public');
+        $new_mobileImage_path = $new_mobileImage->store('images/portfolio', 'public');
 
-        $portfolio->image = $new_image_path;
+        $portfolio->mobileImage = $new_mobileImage_path;
 
         }
 

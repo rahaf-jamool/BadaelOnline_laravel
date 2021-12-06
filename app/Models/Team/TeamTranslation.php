@@ -9,7 +9,7 @@ class TeamTranslation extends Model
 {
     use HasFactory;
     protected $table='team_translation';
-    protected $fillable=['id','team_id','name','position','saying','local'];
+    protected $fillable=['id','team_id','name','position','qoute','local'];
     protected $hidden=['team_id','local'];
 
     public function team()

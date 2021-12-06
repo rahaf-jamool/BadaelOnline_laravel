@@ -44,7 +44,7 @@ class TeamController extends Controller
         $team->facebook = $request->facebook;
         $team->instagram = $request->instagram;
         $team->linkedin = $request->linkedin;
-        $team->saying = $request->saying;
+        $team->qoute = $request->qoute;
 
         $photo = $request->file('photo');
 
@@ -105,7 +105,7 @@ class TeamController extends Controller
         $team->facebook = $request->facebook;
         $team->instagram = $request->instagram;
         $team->linkedin = $request->linkedin;
-        $team->saying = $request->saying;
+        $team->qoute = $request->qoute;
         
         $new_photo = $request->file('photo');
 

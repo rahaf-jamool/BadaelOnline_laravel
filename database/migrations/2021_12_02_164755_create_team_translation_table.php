@@ -19,7 +19,7 @@ class CreateTeamTranslationTable extends Migration
             $table->string('local');
             $table->string('name');
             $table->string('position');
-            $table->text('saying')->nullable();
+            $table->text('qoute')->nullable();
             $table->timestamps();
         });
     }

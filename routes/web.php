@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BannerController, CategoryController, FaqController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, TeamController, UserController};
+use App\Http\Controllers\{BannerController, CategoryController, FaqController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, UserController};
+use App\Http\Controllers\Team\TeamController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------

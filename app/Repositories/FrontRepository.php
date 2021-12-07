@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Repositories\Eloquent;
+namespace App\Repositories;
 
 use App\Models\{About, Banner, Category, Faq, General, Link, Page, Partner, Pcategory, Portfolio, Post, Tag, Testimonial, Service, Subscriber};
-use App\Models\Team\Team;
-use App\Models\Team\TeamTranslation;
+use App\Models\Team\{Team,TeamTranslation};
 use Illuminate\Support\Facades\Validator;
 use App\Traits\GeneralTrait;
 

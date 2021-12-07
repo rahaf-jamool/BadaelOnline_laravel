@@ -1,12 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Repositories;
 
+use App\Http\Requests\Team\TeamRequest;
+use App\Repositories\Interfaces\TeamRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\Team\Team;
+use App\Models\Team\TeamTranslation;
+
 use Illuminate\Support\Facades\Storage;
-class TeamController extends Controller
-{
+
+class TeamRepository implements TeamRepositoryInterface{
+
+    private $team;
+    private $teamTranslation;
+    public function __construct(Team $team , TeamTranslation $teamTranslation)
+    {
+        $this->team = $team;
+        $this->teamTranslation = $teamTranslation;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $team = Team::orderBy('id','desc')->get();
+        $team = $this->team::orderBy('id','desc')->get();
 
         return view('admin.team.index',compact('team'));
     }
@@ -35,7 +47,7 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
         $team = new Team();
         $team->name = $request->name;
@@ -57,11 +69,11 @@ class TeamController extends Controller
         if ( $team->save()) {
 
             return redirect()->route('admin.team')->with('success', 'Data added successfully');
-    
+
            } else {
-               
+
             return redirect()->route('admin.team.create')->with('error', 'Data failed to add');
-    
+
            }
     }
 
@@ -84,7 +96,7 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
-        $team = Team::findOrFail($id);
+        $team = $this->team::findOrFail($id);
 
         return view('admin.team.edit',compact('team'));
     }
@@ -96,9 +108,9 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TeamRequest $request, $id)
     {
-        $team = Team::findOrFail($id);
+        $team = $this->team::findOrFail($id);
         $team->name = $request->name;
         $team->position = $request->position;
         $team->twitter = $request->twitter;
@@ -106,7 +118,7 @@ class TeamController extends Controller
         $team->instagram = $request->instagram;
         $team->linkedin = $request->linkedin;
         $team->qoute = $request->qoute;
-        
+
         $new_photo = $request->file('photo');
 
         if($new_photo){
@@ -122,11 +134,11 @@ class TeamController extends Controller
         if ( $team->save()) {
 
             return redirect()->route('admin.team')->with('success', 'Data updated successfully');
-    
+
            } else {
-               
+
             return redirect()->route('admin.team.edit')->with('error', 'Data failed to update');
-    
+
            }
     }
 
@@ -138,12 +150,12 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        $team = Team::findOrFail($id);
+        $team = $this->team::findOrFail($id);
 
         $team->delete();
 
         return redirect()->route('admin.team')->with('success', 'Data deleted successfully');
-    
+
 
     }
 }

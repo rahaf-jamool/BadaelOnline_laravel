@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{BannerController, CategoryController, FaqController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, UserController};
+use App\Http\Controllers\{ CategoryController, FaqController, GeneralController, LinkController, PageController, PartnerController, PcategoryController, PortfolioController, PostController, ServiceController, TagController, TestimonialController, UserController};
 use App\Http\Controllers\Team\TeamController;
+use App\Http\Controllers\Banner\BannerController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -150,12 +151,16 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         'middleware' => ['Localization']
     ],function(){
     // Manage Team
-    Route::get('teams', [TeamController::class, 'index'])->name('admin.team');
-    Route::get('teams/create', [TeamController::class, 'create'])->name('admin.team.create');
-    Route::post('teams/create', [TeamController::class, 'store'])->name('admin.team.store');
-    Route::get('teams/edit/{id}', [TeamController::class, 'edit'])->name('admin.team.edit');
-    Route::post('teams/edit/{id}', [TeamController::class, 'update'])->name('admin.team.update');
-    Route::delete('teams/destroy/{id}',[TeamController::class, 'destroy'])->name('admin.team.destroy');
+    Route::group(['prefix'=>'teams','namespace'=>'Team'],function()
+            {
+                Route::get('/', 'TeamController@index')->name('admin.team');
+                Route::get('/create','TeamController@create')->name('admin.team.create');
+                Route::post('/create','TeamController@store')->name('admin.team.store');
+                Route::get('/edit/{id}','TeamController@edit')->name('admin.team.edit');
+                Route::post('/edit/{id}','TeamController@update')->name('admin.team.update');
+                Route::delete('/destroy/{id}','TeamController@destroy')->name('admin.team.destroy');
+
+            });
     });
 
      // Manage Admin

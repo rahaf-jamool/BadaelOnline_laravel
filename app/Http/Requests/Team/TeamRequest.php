@@ -26,9 +26,9 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name'=>'required',
-            // 'position'=>'required|min:10|max:255',
-            // 'qoute'=>'required|min:10|max:255',
+            'name'=>'required',
+            'position'=>'required|min:3|max:255',
+            'qoute'=>'required|min:3|max:255',
             // 'locale'=>'required',
 
             'photo' => 'required',
@@ -36,7 +36,7 @@ class TeamRequest extends FormRequest
             'twitter'=> 'required|string',
             'instagram'=> 'required|string',
             'linkedin'=> 'required|string',
-            // 'is_active' => 'required|in:0,1'
+            'is_active' => 'required|in:0,1'
         ];
     }
     public function messages()
@@ -44,7 +44,7 @@ class TeamRequest extends FormRequest
         return [
 
             'required'=>'this field is required',
-            // 'in'=>'this field must be 0 (is not active) or 1 (is active)',
+            'in'=>'this field must be 0 (is not active) or 1 (is active)',
 
             'name.min' => 'Your Team\'s name  Is Too Short',
 

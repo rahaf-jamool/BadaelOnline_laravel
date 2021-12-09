@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Repositories;
 
-use Illuminate\Http\Request;
 use App\Models\Banner;
+use App\Repositories\Interfaces\BannerRepositoryInterface;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class BannerController extends Controller
-{
+class BannerRepository implements BannerRepositoryInterface{
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +54,7 @@ class BannerController extends Controller
             return redirect()->route('admin.banner')->with('success', 'Data added successfully');
            } else {
             return redirect()->route('admin.banner.create')->with('error', 'Data failed to add');
-    
+
            }
     }
 
@@ -99,19 +100,19 @@ class BannerController extends Controller
         $new_cover = $request->file('cover');
         if($new_cover){
         if($banner->cover && file_exists(storage_path('app/public/' . $banner->cover))){
-            \Storage::delete('public/'. $banner->cover);
+            Storage::delete('public/'. $banner->cover);
         }
 
         $new_cover_path = $new_cover->store('images/banner', 'public');
 
         $banner->cover = $new_cover_path;
-    }   
+    }
     // dd($banner);
         if ($banner->update()) {
             return redirect()->route('admin.banner')->with('success', 'Data updated successfully');
            } else {
             return redirect()->route('admin.banner.edit')->with('error', 'Data failed to update');
-    
+
            }
     }
 
@@ -127,10 +128,10 @@ class BannerController extends Controller
 
         if ($banner->delete()) {
             if($banner->cover && file_exists(storage_path('app/public/' . $banner->cover))){
-                \Storage::delete('public/'. $banner->cover);
+                Storage::delete('public/'. $banner->cover);
             }
         }
-        
+
         return redirect()->route('admin.banner')->with('success', 'Data deleted successfully');
     }
 }

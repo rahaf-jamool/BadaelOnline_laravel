@@ -62,8 +62,8 @@
                 <input type="file" id="wizard-picture" name="photo" class="form-control {{$errors->first('photo') ? "is-invalid" : "" }} ">
 
                 <div class="invalid-feedback">
-                    {{ $errors->first('photo') }}    
-                </div>  
+                    {{ $errors->first('photo') }}
+                </div>
 
             </div>
 
@@ -71,19 +71,43 @@
 
         </div>
 
-    </div>   
+    </div>
+                {{-- change  language --}}
+    <div class="divlang">
+        <select name=""  id="changLang" onchange="handleChange(this.value)">
+            <option disabled>Select Language</option>
+            <option value="en">EN</option>
+            <option value="ar">AR</option>
+        </select>
+      </div>
 
     <div class="form-group ml-5">
 
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
+        <label for="name" class="col-sm-2 col-form-label">Name Arabic</label>
 
         <div class="col-sm-7">
 
             <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name')}}" id="name" placeholder="Example: Susi Similikiti">
 
             <div class="invalid-feedback">
-                {{ $errors->first('name') }}    
-            </div>   
+                {{ $errors->first('name') }}
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="form-group ml-5">
+
+        <label for="name" class="col-sm-2 col-form-label">Name English</label>
+
+        <div class="col-sm-7">
+
+            <input type="text" name='name' class="form-control {{$errors->first('name') ? "is-invalid" : "" }} " value="{{old('name')}}" id="name" placeholder="Example: Susi Similikiti">
+
+            <div class="invalid-feedback">
+                {{ $errors->first('name') }}
+            </div>
 
         </div>
 
@@ -98,14 +122,14 @@
             <input type="text" name='position' class="form-control {{$errors->first('position') ? "is-invalid" : "" }} " value="{{old('position')}}" id="position" placeholder="Example: Product Manager">
 
             <div class="invalid-feedback">
-                {{ $errors->first('position') }}    
-            </div>   
+                {{ $errors->first('position') }}
+            </div>
 
         </div>
 
     </div>
 
-   
+
     <div class="form-group ml-5">
 
         <label for="twitter" class="col-sm-2 col-form-label">Twitter</label>
@@ -115,8 +139,8 @@
             <input type="text" name='twitter' class="form-control {{$errors->first('twitter') ? "is-invalid" : "" }} " value="{{old('twitter')}}" id="twitter" placeholder="Link Twitter">
 
             <div class="invalid-feedback">
-                {{ $errors->first('twitter') }}    
-            </div>   
+                {{ $errors->first('twitter') }}
+            </div>
 
         </div>
 
@@ -131,8 +155,8 @@
             <input type="text" name='facebook' class="form-control {{$errors->first('facebook') ? "is-invalid" : "" }} " value="{{old('facebook')}}" id="facebook" placeholder="Link Facebook">
 
             <div class="invalid-feedback">
-                {{ $errors->first('facebook') }}    
-            </div>   
+                {{ $errors->first('facebook') }}
+            </div>
 
         </div>
 
@@ -147,8 +171,8 @@
             <input type="text" name='instagram' class="form-control {{$errors->first('instagram') ? "is-invalid" : "" }} " value="{{old('instagram')}}" id="instagram" placeholder="Link Instagram">
 
             <div class="invalid-feedback">
-                {{ $errors->first('instagram') }}    
-            </div>   
+                {{ $errors->first('instagram') }}
+            </div>
 
         </div>
 
@@ -163,8 +187,8 @@
             <input type="text" name='linkedin' class="form-control {{$errors->first('linkedin') ? "is-invalid" : "" }} " value="{{old('linkedin')}}" id="linkedin" placeholder="Link Linkedin">
 
             <div class="invalid-feedback">
-                {{ $errors->first('linkedin') }}    
-            </div>   
+                {{ $errors->first('linkedin') }}
+            </div>
 
         </div>
 
@@ -179,8 +203,8 @@
             <input type="text" name='qoute' class="form-control {{$errors->first('qoute') ? "is-invalid" : "" }} " value="{{old('qoute')}}" id="qoute" placeholder="Qoute">
 
             <div class="invalid-feedback">
-                {{ $errors->first('qoute') }}    
-            </div>   
+                {{ $errors->first('qoute') }}
+            </div>
 
         </div>
 
@@ -210,6 +234,12 @@ function readURL(input) {
       reader.readAsDataURL(input.files[0]);
   }
 }
+// change lang
+let lang = localStorage.getItem("lang");
+function handleChange(val){
+    console.log("lang",val);
+    localStorage.setItem("lang", val);
+}
 </script>
-  
+
 @endpush

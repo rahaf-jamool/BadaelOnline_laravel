@@ -26,7 +26,7 @@ class TeamRepository implements TeamRepositoryInterface{
      */
     public function index()
     {
-        $team = $this->team::orderBy('id','desc')->get();
+         $this->team::orderBy('id','desc')->get();
 
         return view('admin.team.index',compact('team'));
     }

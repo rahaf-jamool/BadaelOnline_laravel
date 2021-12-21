@@ -32,7 +32,7 @@ class TeamService
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeamRequest $request){
+    public function store(Request $request){
         return $this->teamManager->store($request);
     }
 
@@ -62,7 +62,7 @@ class TeamService
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TeamRequest $request, $id){
+    public function update(Request $request, $id){
         return $this->teamManager->update($request, $id);
     }
 

@@ -149,7 +149,7 @@ class TeamRepository implements TeamRepositoryInterface{
         try{
             $team = $this->team::findOrFail($id);
 
-            $photo = $request->file('photo');
+            // $photo = $request->file('photo');
             if($photo){
             $cover_path = $photo->store('images/team', 'public');
             $photo = $cover_path;

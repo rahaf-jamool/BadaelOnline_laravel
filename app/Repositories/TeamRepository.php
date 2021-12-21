@@ -49,7 +49,6 @@ class TeamRepository implements TeamRepositoryInterface{
      */
     public function create()
     {
-        // $Team = $this->teamTranslation->all();
         Gate::authorize('team-create',$this->user);
         return view('admin.team.create');
     }
